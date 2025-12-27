@@ -4,8 +4,9 @@ const {
   getExpense,
   deleteExpense,
 } = require("../Controller/store-controller");
+const authMiddleware = require("../middleware/authMiddleware");
 const storeRouter = express.Router();
-storeRouter.post("/", postExpense);
-storeRouter.get("/", getExpense);
-storeRouter.delete("/:id", deleteExpense);
+storeRouter.post("/", authMiddleware, postExpense);
+storeRouter.get("/", authMiddleware, getExpense);
+storeRouter.delete("/:id", authMiddleware, deleteExpense);
 module.exports = { storeRouter };

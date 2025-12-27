@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
@@ -6,6 +8,7 @@ require("dotenv").config();
 
 const app = express();
 const { storeRouter } = require("./Routes/storeRouter");
+const authRouter = require("./Routes/authRouter");
 
 // ✅ Middlewares
 app.use(cors());
@@ -18,6 +21,7 @@ app.use((req, res, next) => {
 
 // ✅ Routes
 app.use("/expense", storeRouter);
+app.use("/auth", authRouter);
 
 // ✅ Port setup for Render
 const PORT = process.env.PORT || 3000;
